@@ -3,7 +3,6 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
 import { stripe } from "@/libs/stripe"
-import { getURL } from "@/app/utils/getURL"
 import { createOrRetrieveCustomer } from "@/libs/supabaseAdmin"
 
 export async function POST() {
@@ -25,7 +24,7 @@ export async function POST() {
 
     const { url } = await stripe.billingPortal.sessions.create({
       customer,
-      return_url: `${getURL()}/account`,
+      return_url: `${location.origin}/account`,
     })
 
     return NextResponse.json({ url })
