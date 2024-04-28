@@ -1,23 +1,23 @@
-"use client";
+"use client"
 
-import usePlayer from "@/hooks/usePlayer";
-import useLoadSongUrl from "@/hooks/useLoadSongUrl";
-import useGetSongById from "@/hooks/useGetSongById";
+import usePlayer from "@/hooks/usePlayer"
+import useLoadSongUrl from "@/hooks/useLoadSongUrl"
+import useGetSongById from "@/hooks/useGetSongById"
 
-import PlayerContent from "./PlayerContent";
+import PlayerContent from "./PlayerContent"
 
 const Player = () => {
-  const player = usePlayer();
-  const { song } = useGetSongById(player.activeId);
+  const player = usePlayer()
+  const { song } = useGetSongById(player.activeId)
 
-  const songUrl = useLoadSongUrl(song!);
+  const songUrl = useLoadSongUrl(song!)
 
   if (!song || !songUrl || !player.activeId) {
-    return null;
+    return null
   }
 
   return (
-    <div 
+    <div
       className="
         fixed 
         bottom-0 
@@ -26,11 +26,10 @@ const Player = () => {
         py-2 
         h-[80px] 
         px-4
-      "
-    >
+      ">
       <PlayerContent key={songUrl} song={song} songUrl={songUrl} />
     </div>
-  );
+  )
 }
 
-export default Player;
+export default Player
