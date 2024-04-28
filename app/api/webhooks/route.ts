@@ -31,6 +31,8 @@ export async function POST(request: Request) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 })
   }
 
+  console.log(34, "webhook triggered")
+
   if (relevantEvents.has(event.type)) {
     try {
       switch (event.type) {
@@ -49,7 +51,7 @@ export async function POST(request: Request) {
           await manageSubscriptionStatusChange(
             subscription.id,
             subscription.customer as string,
-            event.type === "customer.subscription.created",
+            event.type === "customer.subscription.created"
           )
           break
         case "checkout.session.completed":
