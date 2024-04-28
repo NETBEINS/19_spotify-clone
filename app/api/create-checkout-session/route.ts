@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 
 import { stripe } from "@/libs/stripe"
+import { getURL } from "@/app/utils/getURL"
 import { createOrRetrieveCustomer } from "@/libs/supabaseAdmin"
 
 export async function POST(request: Request) {
@@ -37,8 +38,8 @@ export async function POST(request: Request) {
         trial_from_plan: true,
         metadata,
       },
-      success_url: `${location.origin}/account`,
-      cancel_url: `${location.origin}/`,
+      success_url: `${getURL()}/account`,
+      cancel_url: `${getURL()}/`,
     })
 
     return NextResponse.json({ sessionId: session.id })
